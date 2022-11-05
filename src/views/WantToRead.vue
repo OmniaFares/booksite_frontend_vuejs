@@ -2,14 +2,14 @@
 <div>
   <div><NavBar /></div>
   <br>
-  <v-row><List v-for="Book in Books"
+  <v-row ><List v-for="Book in Books"
             :key="Book.id"
             :id="Book.id"
             :title="Book.title"
             :author="Book.author"
             :year="Book.year"
             :image="Book.image"
-            :type="true"/>
+            :type="false"/>
   </v-row>
 </div>
 </template>
@@ -32,17 +32,16 @@
       year: "",
       image: "",
     },
-
   }),
   methods: {
     getBooks() {
       axios({
         method: "get",
-        url: "http://127.0.0.1:8000/api/books",
+        url: "http://127.0.0.1:8000/api/want_to_read_books",
       }).then((response) => {
           this.Books = response.data;
       });
-    },
+    }
   },
   created() {
     this.getBooks()
