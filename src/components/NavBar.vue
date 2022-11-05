@@ -4,14 +4,14 @@
       <v-spacer></v-spacer>
 
       <div style="display:inline margin-right: 10rem;" v-show="show"> 
-        <label class ="btn badge-danger">Search by</label> 
-        <select style="width:200px;font-family: cursive; "> 
+        <label style="margin-right: 0.3rem;" class ="btn badge-danger">Search by</label> 
+        <select style="background-color: #e9ecef; margin-right: 0.3rem; width:200px;font-family: cursive; "> 
             <option> Book Name</option> 
             <option> Author </option>  
         </select> 
         <div style="display:inline"> 
-            <input type ="text">
-            <button class ="btn badge-danger" style="margin-left: 2rem;" >Go</button> 
+            <input type ="text" style="background-color: #e9ecef; margin-right: 0.3rem;">
+            <button class ="btn badge-danger" style="margin-right: 0.3rem;" >Go</button> 
             <button class ="btn badge-danger">All</button> 
         </div>
        </div>
@@ -31,11 +31,11 @@
         </template>
 
         <v-list>
-          <v-list-item>
+          <v-list-item link>
             <v-button v-on:click="getReadBooks()">Read</v-button>
           </v-list-item>
 
-          <v-list-item>
+          <v-list-item link>
             <v-button v-on:click="getWantToReadBooks()">Want to Read</v-button>
           </v-list-item>
         </v-list>

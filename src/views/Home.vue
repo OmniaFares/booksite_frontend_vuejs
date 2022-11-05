@@ -2,14 +2,14 @@
 <div>
   <div><NavBar /></div>
   <br>
-  <v-row><List v-for="Book in Books"
+  <v-row ><List v-for="Book in Books"
             :key="Book.id"
             :id="Book.id"
             :title="Book.title"
             :author="Book.author"
             :year="Book.year"
             :image="Book.image"
-            :type="true"/>
+            :type="1"/>
   </v-row>
 </div>
 </template>

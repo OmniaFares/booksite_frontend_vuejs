@@ -9,7 +9,7 @@
             :author="Book.author"
             :year="Book.year"
             :image="Book.image"
-            :type="false"/>
+            :type="2"/>
   </v-row>
 </div>
 </template>
@@ -19,11 +19,11 @@
   import List from "@/components/List.vue";
   import axios from "axios";
   export default {
-    components: {
+  components: {
       NavBar,
       List
     },
-    data: () => ({
+  data: () => ({
     Books: [],
     Book: {
       title: "",

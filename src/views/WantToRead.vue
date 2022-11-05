@@ -9,7 +9,7 @@
             :author="Book.author"
             :year="Book.year"
             :image="Book.image"
-            :type="false"/>
+            :type="3"/>
   </v-row>
 </div>
 </template>
