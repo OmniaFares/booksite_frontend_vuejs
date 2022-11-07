@@ -12,7 +12,7 @@
                 {{Book.title}}
             </v-card-title>
             <v-card-subtitle>
-                {{Book.author}}
+                {{Book.author}} - {{Book.year}}
             </v-card-subtitle>
             <v-card-actions>
                 <v-btn v-on:click="removeFromFav(Book.id)" color="red" text>

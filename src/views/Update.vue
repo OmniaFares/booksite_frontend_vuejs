@@ -2,17 +2,23 @@
 <div>
     <div><NavBar /></div>
     <br>
-    <form>
-        <v-container>
+    <form style="margin-left: 258px;">
+        <v-row>
+          <v-col>
             <v-text-field v-model="title" label="Book Title" required ></v-text-field>
-            <v-text-field v-model="author" label="Book Author" required ></v-text-field>
-            <v-text-field v-model="year" label="Book Year" required ></v-text-field>
-            <v-img v-bind:src="`http://127.0.0.1:8000/book_images/${image}`" width="250px" height="370px"  ></v-img>
-            <v-file-input label="Upload Book Cover" v-model="image" accept="image/*" prepend-icon="mdi-camera-plus" ></v-file-input>
             <br>
+            <v-text-field v-model="author" label="Book Author" required ></v-text-field>
+            <br>
+            <v-text-field v-model="year" label="Book Year" required ></v-text-field>
+            <br><br><br><br>
             <v-btn class="mr-4" @click="Save()" >Save Changes</v-btn>
             <v-btn class="mr-4" @click="Back()" >Cancel</v-btn>
-        </v-container>
+          </v-col>
+          <v-col>
+            <v-img :src="useravatar" width="250px" height="370px"></v-img>
+            <v-file-input @change="previewImage" hide-input v-model="file" accept="image/*" prepend-icon="mdi-camera-plus"></v-file-input>
+          </v-col> 
+        </v-row>
     </form>
 </div>
 </template>
@@ -30,10 +36,23 @@ export default {
       title: "",
       author: "",
       year: "",
-      image: ""
+      avatarurl: null,
+      url: "",
+      file: "",
     }
   },
+  computed: {
+    useravatar() {
+      if (this.avatarurl) return `http://127.0.0.1:8000/book_images/${this.avatarurl}`;
+      return this.url;
+    },
+  },
   methods: {
+     previewImage() {
+      this.url = URL.createObjectURL(this.file);
+      this.avatarurl = "";
+      this.useravatar();
+    },
     getBook(id){
       axios({
         method: "get",
@@ -45,20 +64,21 @@ export default {
         this.title = response.data.title;
         this.author = response.data.author;
         this.year = response.data.year;
-        this.image = response.data.image;
+        this.avatarurl = response.data.image;
       });
     },
     Save() {
         const fd = new FormData();
-        fd.append("image", this.image);
+        fd.append("image", this.file);
         fd.append("title", this.title);
-         fd.append("id", this.id);
+        fd.append("id", this.id);
         fd.append("author", this.author);
         fd.append("year", this.year);
         axios
           .post("http://127.0.0.1:8000/api/update_book", fd)
           .then(() => {
-             this.$router.push({ name: "Home" });
+            this.$router.push({ name: "Home" });
+            window.location.reload();
           })
           .catch(() => {});
     },
