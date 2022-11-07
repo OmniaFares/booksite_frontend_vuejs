@@ -1,8 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Read from "../views/Read.vue";
-import WantToRead from "../views/WantToRead.vue";
+import Fav from "../views/Fav.vue";
+import Add from "../views/Add.vue";
+import Update from "../views/Update.vue";
 
 Vue.use(VueRouter);
 
@@ -13,14 +14,19 @@ const routes = [
     component: Home,
   },
   {
-    path: "/read",
-    name: "Read",
-    component: Read,
+    path: "/fav",
+    name: "Fav",
+    component: Fav,
   },
   {
-    path: "/want_to_read",
-    name: "WantToRead",
-    component: WantToRead,
+    path: "/add",
+    name: "Add",
+    component: Add,
+  },
+  {
+    path: "/update",
+    name: "Update",
+    component: Update,
   },
 ];
 
