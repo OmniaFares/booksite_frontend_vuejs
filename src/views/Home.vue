@@ -1,8 +1,14 @@
 <template>
   <div>
-    <div><NavBar /></div>
-    <br>
-    <v-row>   
+    <div><NavBar /></div>  
+    <a class="btn mt-2">
+      <v-btn @click="AddBook()" class="btn badge-danger">
+        <v-icon>mdi-plus</v-icon>
+           Add Book
+      </v-btn>
+     </a>  
+     <br> <br>
+    <v-row> 
     <div v-for="Book in Books" v-bind:key="Book.id" style="margin-right: 10px; margin-left: 10px;">
       <v-col  class="d-flex child-flex" cols="4"> 
 
@@ -34,12 +40,6 @@
       </div>
     </v-row>
   <v-alert dismissible v-show="show_add" type="success">Book Added Successfully</v-alert>
-  <a class="btn mt-2">
-      <v-btn @click="AddBook()" class="btn badge-danger">
-        <v-icon>mdi-plus</v-icon>
-           Add Book
-      </v-btn>
-  </a>
   </div>
 </template>
 
