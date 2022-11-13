@@ -15,7 +15,10 @@
           {{Book.author}} - {{Book.year}}
         </v-card-subtitle>
         <v-card-actions>
-          <v-btn  v-on:click="addToFav(Book.id)" color="red" text>
+          <v-btn v-show="!Book.is_fav" v-on:click="addToFav(Book.id)" color="red" text>
+            <v-icon>mdi-heart-outline</v-icon>
+          </v-btn>
+           <v-btn v-show="Book.is_fav" color="red" text>
             <v-icon>mdi-heart</v-icon>
           </v-btn>
           <v-btn @click="UpdateBook(Book.id)" color="red" text>
@@ -55,6 +58,7 @@
         id: "",
         year: "",
         image: "",
+        is_fav: null
       },
       show_add: false
   }),
@@ -76,6 +80,7 @@
             },
         }).then(() => {
             this.show_add = true;
+            window.location.reload()
         });
     },
     AddBook(){

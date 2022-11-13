@@ -2,17 +2,17 @@
 <div>
     <div><NavBar /></div>
     <br>
-    <form>
+    <v-form v-model="valid">
         <v-container>
-            <v-text-field v-model="title" label="Book Title" required ></v-text-field>
-            <v-text-field v-model="author" label="Book Author" required ></v-text-field>
-            <v-text-field v-model="year" label="Book Year" required ></v-text-field>
-            <v-file-input required label="Upload Book Cover" v-model="image" accept="image/*" prepend-icon="mdi-camera-plus" ></v-file-input>
+            <v-text-field :rules="Rules" v-model="title" label="Book Title" required ></v-text-field>
+            <v-text-field :rules="Rules" v-model="author" label="Book Author" required ></v-text-field>
+            <v-text-field :rules="Rules" v-model="year" label="Book Year" required ></v-text-field>
+            <v-file-input :rules="Rules" required label="Upload Book Cover" v-model="image" accept="image/*" prepend-icon="mdi-camera-plus" ></v-file-input>
             <br>
             <v-btn class="mr-4" @click="Add()" >ADD</v-btn>
             <v-btn class="mr-4" @click="Back()" >Cancel</v-btn>
         </v-container>
-    </form>
+    </v-form>
 </div>
 </template>
 
@@ -25,6 +25,10 @@ export default {
   },
   data(){
     return{
+      valid: false,
+      Rules: [
+        v => !!v || 'Field is required',
+      ],
       title: "",
       author: "",
       year: "",
